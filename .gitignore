@@ -6,6 +6,7 @@
 *.log
 *.nupkg
 *.trx
+.DS_STORE
 
 # docs
 /api/
