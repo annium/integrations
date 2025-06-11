@@ -17,16 +17,15 @@ public class LinkedInOAuthTests : TestBase
     private const string RedirectUri = "https://localhost:3000/callback";
     private const string BaseUrl = "https://www.linkedin.com";
     private const string ApiBaseUrl = "https://api.linkedin.com";
+
     public LinkedInOAuthTests(ITestOutputHelper testOutputHelper)
-        : base(testOutputHelper)
-    {
-    }
+        : base(testOutputHelper) { }
 
     [Fact]
     public async Task OAuthWithGetMe_Works()
     {
         // Arrange
-        var scope = "r_liteprofile r_emailaddress";
+        var scope = "r_liteprofile r_emailaddress w_member_social";
         var state = "random_state_string";
 
         // Step 1: Build authorization URL
@@ -108,5 +107,4 @@ public class LinkedInOAuthTests : TestBase
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         return request;
     }
-
 }

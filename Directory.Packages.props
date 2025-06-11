@@ -9,9 +9,12 @@
     <PackageVersion Include="Annium.Core.Entrypoint" Version="1.1.14" />
     <PackageVersion Include="Annium.Configuration.Yaml" Version="1.1.14" />
     <PackageVersion Include="Annium.Core.DependencyInjection" Version="1.1.14" />
+    <PackageVersion Include="Annium.AspNetCore.Extensions" Version="1.1.14" />
     <PackageVersion Include="Annium.Core.Runtime" Version="1.1.12" />
+    <PackageVersion Include="Annium.Infrastructure.Hosting" Version="1.1.14" />
+    <PackageVersion Include="Annium.Logging.Microsoft" Version="1.1.14" />
     <PackageVersion Include="Annium.Net.Http" Version="1.1.14" />
-    <PackageVersion Include="Annium.NodaTime.Serialization.Json" Version="1.1.12" />
+    <PackageVersion Include="Annium.NodaTime.Serialization.Json" Version="1.1.14" />
     <PackageVersion Include="Annium.Serialization.Json" Version="1.1.14" />
     <PackageVersion Include="Annium.Testing" Version="1.1.14" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />

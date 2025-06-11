@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Solutions></Solutions>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Annium.AspNetCore.Extensions" />
+    <PackageReference Include="Annium.Configuration.Yaml" />
+    <PackageReference Include="Annium.Core.DependencyInjection" />
+    <PackageReference Include="Annium.Infrastructure.Hosting" />
+    <PackageReference Include="Annium.Logging.Console" />
+    <PackageReference Include="Annium.Logging.Microsoft" />
+    <PackageReference Include="Annium.NodaTime.Serialization.Json" />
+  </ItemGroup>
+</Project>

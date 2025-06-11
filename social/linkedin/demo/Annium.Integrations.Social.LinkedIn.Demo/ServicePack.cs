@@ -1,0 +1,52 @@
+using System;
+using Annium.AspNetCore.Extensions;
+using Annium.Core.DependencyInjection;
+using Annium.Core.Mapper;
+using Annium.Core.Mediator;
+using Annium.Core.Runtime;
+using Annium.Data.Operations.Serialization.Json;
+using Annium.Logging.Console;
+using Annium.Logging.Shared;
+using Annium.NodaTime.Serialization.Json;
+using Annium.Serialization.Abstractions;
+using Annium.Serialization.Json;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Annium.Integrations.Social.LinkedIn.Demo;
+
+internal class ServicePack : ServicePackBase
+{
+    public override void Configure(IServiceContainer container)
+    {
+        container.AddRuntime(GetType().Assembly);
+        container.AddMapper();
+    }
+
+    public override void Register(IServiceContainer container, IServiceProvider provider)
+    {
+        container.AddTime().WithRealTime().SetDefault();
+        container
+            .AddSerializers().WithJson(opts =>
+                {
+                    opts.ConfigureForOperations();
+                    opts.ConfigureForNodaTime();
+                },
+                isDefault: true
+            );
+        container.AddMediator();
+        container.AddLogging();
+
+        // server
+        container.Collection.AddCors();
+        container.Collection.AddControllers().AddDefaultJsonOptions();
+        container.Add(new WebHostConfiguration()).AsSelf().Singleton();
+
+        // app
+        container.Add(new Configuration()).AsSelf().Singleton();
+    }
+
+    public override void Setup(IServiceProvider provider)
+    {
+        provider.UseLogging(route => route.UseConsole());
+    }
+}
