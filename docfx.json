@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "index.md",
+          "toc.yml"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "Annium.Integrations",
+      "_appTitle": "Annium.Integrations Documentation",
+      "_appFooter": "Copyright © 2025 Annium",
+      "_enableSearch": true,
+      "_enableNewTab": true,
+      "_disableContribution": false,
+      "_gitContribute": {
+        "repo": "https://github.com/annium/integrations",
+        "branch": "main"
+      },
+      "_gitUrlPattern": "github",
+      "pdf": false
+    },
+    "fileMetadata": {
+      "_tocTitle": {
+      }
+    },
+    "postProcessors": [
+      "ExtractSearchIndex"
+    ]
+  }
+}
