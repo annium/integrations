@@ -14,7 +14,8 @@
     <PackageVersion Include="Annium.NodaTime.Serialization.Json" Version="1.1.12" />
     <PackageVersion Include="Annium.Serialization.Json" Version="1.1.21" />
     <PackageVersion Include="Annium.Testing" Version="1.1.21" />
-    <PackageVersion Include="OpenAI" Version="2.5.0" />
+    <PackageVersion Include="OpenAI" Version="2.4.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.9" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     <PackageVersion Include="Microsoft.SemanticKernel" Version="1.65.0" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
