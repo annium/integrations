@@ -101,6 +101,8 @@ ci-merge-request-short:
     just ensure-no-changes
     just clean
     just build
+    # enable once XML docs are backfilled — doclint currently reports 313 errors
+    # just docs-lint
 
 ci-merge-request-full:
     #!/usr/bin/env bash
@@ -111,6 +113,8 @@ ci-merge-request-full:
     just ensure-no-changes
     just clean
     just build
+    # enable once XML docs are backfilled — doclint currently reports 313 errors
+    # just docs-lint
     just test
 
 ci-release apiKey repository githubToken:
