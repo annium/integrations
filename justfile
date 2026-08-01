@@ -68,7 +68,8 @@ publish:
 
 docs-lint:
     @echo "=== $0 ==="
-    dotnet tool run doclint lint -w . -i '**/*.cs' -e '**/obj/**/*.cs'
+    # the Obsolete Telegram project is exempt: it is IsPackable=false, kept only for existing consumers
+    dotnet tool run doclint lint -w . -i '**/*.cs' -e '**/obj/**/*.cs' -e 'social/telegram/src/Annium.Integrations.Social.Telegram.Obsolete/**/*.cs'
 
 docs-clean:
     @echo "=== $0 ==="
@@ -101,8 +102,7 @@ ci-merge-request-short:
     just ensure-no-changes
     just clean
     just build
-    # enable once XML docs are backfilled — doclint currently reports 313 errors
-    # just docs-lint
+    just docs-lint
 
 ci-merge-request-full:
     #!/usr/bin/env bash
@@ -113,8 +113,7 @@ ci-merge-request-full:
     just ensure-no-changes
     just clean
     just build
-    # enable once XML docs are backfilled — doclint currently reports 313 errors
-    # just docs-lint
+    just docs-lint
     just test
 
 ci-release apiKey repository githubToken:
