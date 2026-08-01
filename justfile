@@ -116,7 +116,7 @@ ci-merge-request-full:
     just docs-lint
     just test
 
-ci-release apiKey repository githubToken:
+ci-release:
     #!/usr/bin/env bash
     set -e
     echo "=== ci-release ==="
@@ -128,14 +128,14 @@ ci-release apiKey repository githubToken:
     just build
     just pack
     just publish
-    just ci-push-tag "$2" "$3"
+    just ci-push-tag
     echo "Release complete"
 
 ci-set-package-version:
     @echo "=== $0 ==="
     dotnet tool run versioning set-version -v $(cat version)
 
-ci-push-tag repository githubToken:
+ci-push-tag:
     #!/usr/bin/env bash
     set -e
     echo "=== ci-push-tag ==="
