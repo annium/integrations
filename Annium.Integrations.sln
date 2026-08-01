@@ -43,6 +43,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annium.Integrations.Social.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annium.Integrations.Social.Telegram.Obsolete", "social\telegram\src\Annium.Integrations.Social.Telegram.Obsolete\Annium.Integrations.Social.Telegram.Obsolete.csproj", "{89DE93E6-9BFD-421B-9470-7133CD9DD546}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4FC80EBB-DBCF-4B48-405E-56B78CB51239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annium.Integrations.Social.Telegram.Tests", "social\telegram\tests\Annium.Integrations.Social.Telegram.Tests\Annium.Integrations.Social.Telegram.Tests.csproj", "{E2C6F16B-B373-467D-B164-C88CA2B02FA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +165,18 @@ Global
 		{89DE93E6-9BFD-421B-9470-7133CD9DD546}.Release|x64.Build.0 = Release|Any CPU
 		{89DE93E6-9BFD-421B-9470-7133CD9DD546}.Release|x86.ActiveCfg = Release|Any CPU
 		{89DE93E6-9BFD-421B-9470-7133CD9DD546}.Release|x86.Build.0 = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|x64.Build.0 = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Debug|x86.Build.0 = Debug|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|x64.ActiveCfg = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|x64.Build.0 = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|x86.ActiveCfg = Release|Any CPU
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,5 +200,7 @@ Global
 		{F97CC371-3CB8-42CE-B1A6-66EE2FC4C444} = {6FC337FC-8A2F-6D1A-040E-67090AC5C550}
 		{CA113F38-ECB5-4BBA-A4DB-096AECFC6693} = {6FC337FC-8A2F-6D1A-040E-67090AC5C550}
 		{89DE93E6-9BFD-421B-9470-7133CD9DD546} = {50E49CCB-F8F7-C220-B6E6-C4FDB4C586BA}
+		{4FC80EBB-DBCF-4B48-405E-56B78CB51239} = {8857EE48-620A-BC71-0B98-D4DFA992C310}
+		{E2C6F16B-B373-467D-B164-C88CA2B02FA4} = {4FC80EBB-DBCF-4B48-405E-56B78CB51239}
 	EndGlobalSection
 EndGlobal
