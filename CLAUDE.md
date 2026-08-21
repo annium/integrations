@@ -93,7 +93,12 @@ When in doubt, make it nullable.
   `.IsEmpty()`, `.NotNull()`, `.IsDefault()`; exceptions via `Wrap.It().Throws<T>()`.
 - Naming: `Method_Scenario_ExpectedResult`.
 - Test projects are `{Project}.Tests` under `<area>/tests/`, `IsTestProject=true`, `IsPackable=false`,
-  `Solutions=Annium.Integrations`, each with its own `.gitignore` for build and test output.
+  `OutputType=Exe`, `Solutions=Annium.Integrations`, each with its own `.gitignore` for build and test
+  output.
+- **Microsoft.Testing.Platform, not VSTest.** Since xunit.v3 4.0.0 the VSTest target is gone on the
+  .NET 10 SDK, so `global.json` selects the runner (`"test": { "runner": "Microsoft.Testing.Platform" }`),
+  each test project is an `Exe`, and none of them reference `Microsoft.NET.Test.Sdk`,
+  `xunit.runner.visualstudio` or `coverlet.collector`. `just test` runs `dotnet test --report-xunit-trx`.
 - **Prefer a real local server over mocks.** `Annium.Integrations.Social.Telegram.Tests` starts an
   `Annium.Net.Servers.Web` server standing in for the Bot API and drives the real HTTP stack,
   serializer and domain model against it. Let the listener pick its own port (`ServerBuilder.New(sp)`
