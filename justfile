@@ -1,143 +1,20 @@
 set shell := ["bash", "-cu"]
 set positional-arguments
+set allow-duplicate-recipes := true
 
-[private]
-default:
-    @just --list
+# lib.just is copied in by the umbrella repo's `just copy-ci`; recipes redefined below
+# override the shared ones.
+import 'lib.just'
 
-# base
+# overrides
 
-setup:
+# packages go to the private Annium feed, not nuget.org
+publish apiKey:
     @echo "=== $0 ==="
-    dotnet tool restore
+    dotnet nuget push "*.nupkg" --source https://dotnet.pkg.annium.com/v3/index.json --api-key "$1" --skip-duplicate
+    find . -type f \( -name '*.nupkg' -o -name '*.snupkg' \) -delete
 
-format:
-    @echo "=== $0 ==="
-    dotnet tool run csharpier format . --config-path $(pwd)/.editorconfig
-    dotnet tool run xs format -sc -ic
-
-format-full: format
-    @echo "=== $0 ==="
-    dotnet format style
-    dotnet format analyzers
-
-ensure-no-changes:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== ensure-no-changes ==="
-    if [[ -n "$(git status --porcelain)" ]]; then
-        echo "Changes detected:"
-        git status
-        git --no-pager diff --no-color --exit-code
-    fi
-
-update:
-    @echo "=== $0 ==="
-    dotnet tool list --format json | jq -r '.data[] | "\(.packageId)"' | xargs -I% dotnet tool install %
-    dotnet tool run xs update all -sc -ic
-
-clean:
-    @echo "=== $0 ==="
-    dotnet tool run xs clean -sc -ic
-    find . -type f -name '*.nupkg' | xargs -I% rm %
-
-build:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== build ==="
-    packageVersion=$(dotnet tool run versioning get-version -v $(cat version))
-    dotnet build -c Release --nologo -v q -p:PackageVersion=$packageVersion
-
-test:
-    @echo "=== $0 ==="
-    dotnet test -c Release --no-build --report-xunit-trx
-
-pack:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== pack ==="
-    packageVersion=$(dotnet tool run versioning get-version -v $(cat version))
-    dotnet pack --no-build -o . -c Release -p:SymbolPackageFormat=snupkg -p:PackageVersion=$packageVersion
-
-publish:
-    @echo "=== $0 ==="
-    dotnet nuget push "*.nupkg" --source https://dotnet.pkg.annium.com/v3/index.json --api-key $(cat .xs.credentials)
-    find . -type f -name '*.nupkg' | xargs -I% rm %
-
-# docs
-
+# the Obsolete Telegram project is exempt: it is IsPackable=false, kept only for existing consumers
 docs-lint:
     @echo "=== $0 ==="
-    # the Obsolete Telegram project is exempt: it is IsPackable=false, kept only for existing consumers
     dotnet tool run doclint lint -w . -i '**/*.cs' -e '**/obj/**/*.cs' -e 'social/telegram/src/Annium.Integrations.Social.Telegram.Obsolete/**/*.cs'
-
-docs-clean:
-    @echo "=== $0 ==="
-    rm -rf _site api
-
-docs-metadata:
-    @echo "=== $0 ==="
-    dotnet tool run docfx metadata docfx.json
-
-docs-build:
-    @echo "=== $0 ==="
-    dotnet tool run docfx docfx.json
-
-docs-serve:
-    @echo "=== $0 ==="
-    dotnet tool run docfx serve _site
-
-docs-watch:
-    @echo "=== $0 ==="
-    dotnet tool run docfx docfx.json --serve
-
-# ci
-
-ci-merge-request-short:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== ci-merge-request-short ==="
-    just setup
-    just format
-    just ensure-no-changes
-    just clean
-    just build
-    just docs-lint
-
-ci-merge-request-full:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== ci-merge-request-full ==="
-    just setup
-    just format
-    just ensure-no-changes
-    just clean
-    just build
-    just docs-lint
-    just test
-
-ci-release:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== ci-release ==="
-    just setup
-    just format
-    just ensure-no-changes
-    just ci-set-package-version
-    just clean
-    just build
-    just pack
-    just publish
-    just ci-push-tag
-    echo "Release complete"
-
-ci-set-package-version:
-    @echo "=== $0 ==="
-    dotnet tool run versioning set-version -v $(cat version)
-
-ci-push-tag:
-    #!/usr/bin/env bash
-    set -e
-    echo "=== ci-push-tag ==="
-    packageVersion=$(dotnet tool run versioning get-version -v $(cat version))
-    git push origin v$packageVersion
