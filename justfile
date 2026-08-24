@@ -7,12 +7,9 @@ set allow-duplicate-recipes := true
 import 'lib.just'
 
 # overrides
-
-# packages go to the private Annium feed, not nuget.org
-publish apiKey:
-    @echo "=== $0 ==="
-    dotnet nuget push "*.nupkg" --source https://dotnet.pkg.annium.com/v3/index.json --api-key "$1" --skip-duplicate
-    find . -type f \( -name '*.nupkg' -o -name '*.snupkg' \) -delete
+#
+# `publish` is NOT overridden: packages go to nuget.org through the shared recipe, using the
+# org-level NUGET_API_KEY, same as base / backend / frontend / tools.
 
 # the Obsolete Telegram project is exempt: it is IsPackable=false, kept only for existing consumers
 docs-lint:
