@@ -60,9 +60,12 @@ integrations/
   carries the container; `With*` extensions write registrations into it. `AddTelegramBot(…, opts => …)`
   does the same through `BotOptions`.
 - **Plugin discovery needs a scanned assembly.** `WithPluginInstances()` finds
-  `ISemanticKernelPlugin` implementations through Annium's type manager. Without `AddRuntime(assembly)`
-  **and** `[assembly: AutoScanned]` (an `Asm.cs` file, by convention) it registers nothing and fails
-  silently — the kernel simply resolves with zero plugins.
+  `ISemanticKernelPlugin` implementations through Annium's type manager, which needs `AddRuntime(assembly)`
+  **and** `[assembly: AutoScanned]` (an `Asm.cs` file, by convention). The two halves fail differently, and
+  both are pinned by `PluginRegistrationTests`: without `AddRuntime` there is no type manager, so
+  `WithPluginInstances()` throws `InvalidOperationException` at the registration call; with `AddRuntime` but
+  an unscanned declaring assembly, nothing is found and the kernel resolves with zero plugins — that is the
+  silent half.
 - **Registration may be async.** `ServicePackBase` hooks are `ConfigureAsync` / `RegisterAsync` /
   `SetupAsync` since Annium 1.1.40, and `Entrypoint…SetupAsync()` is awaited. Work that needs I/O at
   startup (e.g. `WithMcpFunctionsFromHttpServerAsync`, which connects to an MCP server and lists its
