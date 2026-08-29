@@ -3,16 +3,16 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Annium.Execution.Background" Version="1.1.45" />
-    <PackageVersion Include="Annium.Logging.Console" Version="1.1.45" />
-    <PackageVersion Include="Annium.Net.Servers.Web" Version="1.1.45" />
-    <PackageVersion Include="Annium.Core.Entrypoint" Version="1.1.45" />
-    <PackageVersion Include="Annium.Configuration.Yaml" Version="1.1.45" />
-    <PackageVersion Include="Annium.Core.DependencyInjection" Version="1.1.45" />
-    <PackageVersion Include="Annium.Core.Runtime" Version="1.1.45" />
-    <PackageVersion Include="Annium.Net.Http" Version="1.1.45" />
-    <PackageVersion Include="Annium.Serialization.Json" Version="1.1.45" />
-    <PackageVersion Include="Annium.Testing" Version="1.1.45" />
+    <PackageVersion Include="Annium.Execution.Background" Version="1.1.48" />
+    <PackageVersion Include="Annium.Logging.Console" Version="1.1.48" />
+    <PackageVersion Include="Annium.Net.Servers.Web" Version="1.1.48" />
+    <PackageVersion Include="Annium.Core.Entrypoint" Version="1.1.48" />
+    <PackageVersion Include="Annium.Configuration.Yaml" Version="1.1.48" />
+    <PackageVersion Include="Annium.Core.DependencyInjection" Version="1.1.48" />
+    <PackageVersion Include="Annium.Core.Runtime" Version="1.1.48" />
+    <PackageVersion Include="Annium.Net.Http" Version="1.1.48" />
+    <PackageVersion Include="Annium.Serialization.Json" Version="1.1.48" />
+    <PackageVersion Include="Annium.Testing" Version="1.1.48" />
     <PackageVersion Include="OpenAI" Version="2.13.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="10.0.11" />
     <PackageVersion Include="Microsoft.SemanticKernel" Version="1.80.0" />
